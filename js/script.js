@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     //timer 
 
-    const deadline = '2025-04-18';
+    const deadline = '2025-04-19';
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
         const t = Date.parse(endtime) - Date.parse(new Date());
@@ -168,7 +168,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
         render() {
             const element = document.createElement('div');
-            this.classes.forEach(className => element.classList.add(className))
+            if (this.classes.length === 0) {
+                this.element = 'menu__item';
+                element.classList.add(this.element);
+            } else {
+                this.classes.forEach(className => element.classList.add(className))
+            }
+
             element.innerHTML = `
                     <img src=${this.src} alt=${this.alt}>
                     <h3 class="menu__item-subtitle">${this.title}</h3>
@@ -190,8 +196,6 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов.Продукт активных и здоровых людей.Это абсолютно новый продукт с оптимальной ценой и высоким качеством',
         9,
         ".menu .container",
-        'menu__item',
-        'big'
     ).render()
 
     new MenuCard(
@@ -201,7 +205,6 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствиепродуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
         5,
         ".menu .container",
-        'menu__item',
     ).render()
 
     new MenuCard(
@@ -211,8 +214,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
         11,
         ".menu .container",
-        'menu__item',
     ).render()
 
-    
+
 });
